@@ -2,6 +2,35 @@
 {% block title %}Step 1: IDENTIFY{% endblock %} 
 {% load static %} 
 {% block content %}
+<!--  -->
+<style>
+  .widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 1;
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .widget-container {
+    margin-top: 50px;
+  }
+
+  .custom-card {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .custom-card-body {
+    padding: 10px;
+  }
+</style>
 <!-- second header  -->
 <nav class="navbars">
   <div class="container-fluid-nav text-center">
@@ -15,26 +44,28 @@
   <form method="post">
     {% csrf_token %}
     <div class="form-group">
-      <label
-        class="form-label"
-        for="inputlg"
-        style="font-family: 'Times New Roman', Times, serif; font-size: 19px"
-      >
+      <label class="form-label" for="inputlg" style="font-family: 'Times New Roman', Times, serif; font-size: 19px">
         Q1.Identify problems you or your friends and family relate
-        with.</label
-      >
-      <textarea
-        class="form-control"
-        rows="10"
-        style="
-          height: 100%;
-          font-family: 'Times New Roman', Times, serif;
-          font-size: 19px;
-        "
-        placeholder="Your Answer"
-        name="initial_problem"
-      >{{step1.identify_problems}}</textarea>
+        with.</label>
+      <div class="d-grid g d-md-flex justify-content-md-end">
+        <button type="button" id="addProblemBtn" class="btn btn-success btn-sm">
+          <i class="fas fa-plus"></i> Add Next Problem </button>
+      </div>
+      <div id="problemWidgets" class="mb-3 widget-container">
+        <!-- Default widget -->
+        <div class="custom-card">
+          <div class="widget-header">
+            <input type="text" class="form-control" placeholder="Problem Title">
+            <!-- <button type="button" class="btn btn-danger delete-widget"><i class="fas fa-trash"></i></button> -->
+          </div>
+          <div class="custom-card-body">
+            <textarea class="form-control" rows="3" name="initial_problem"
+              placeholder="Enter problem description...">{{step1.identify_problems}}</textarea>
+          </div>
+        </div>
+      </div>
     </div>
+
     <!-- Buttons-->
 <div class="container">
   <div class="row">
@@ -47,5 +78,45 @@
   </form>
 </div>
 <!-- Question Answeer Box  Ends-->
+<script>
+  let widgetCounter = 1;
 
+  document.getElementById('addProblemBtn').addEventListener('click', function () {
+    if (widgetCounter < 10) {
+      const newWidget = createWidget();
+      document.getElementById('problemWidgets').insertAdjacentElement('afterbegin', newWidget);
+      widgetCounter++;
+    } else {
+      alert("You can't add more than 10 widgets.");
+    }
+  });
+
+  // document.addEventListener('click', function (event) {
+  //   if (event.target.classList.contains('delete-widget')) {
+  //     event.target.closest('.custom-card').remove();
+  //     widgetCounter--;
+  //   }
+  // });
+
+  function createWidget() {
+    const widgetDiv = document.createElement('div');
+    widgetDiv.classList.add('custom-card', 'mb-3', 'position-relative');
+    widgetDiv.innerHTML = `
+                <div class="widget-header">
+                    <input type="text" class="form-control" placeholder="Problem Title">
+                    <!-- <button type="button" class="btn btn-danger delete-widget"><i class="fas fa-trash"></i></button> -->
+                </div>
+                <div class="custom-card-body">
+                    <textarea class="form-control" rows="3" placeholder="Enter problem description..."></textarea>
+                </div>
+            `;
+
+    // widgetDiv.querySelector('.delete-widget').addEventListener('click', function () {
+    //   widgetDiv.remove();
+    // });
+
+    return widgetDiv;
+  }
+</script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 {% endblock %}

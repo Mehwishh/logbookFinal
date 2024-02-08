@@ -2,6 +2,7 @@
 {% block title %}Statement Of Originality{% endblock %} 
 {% load static %} 
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <!-- second header  -->
 <nav class="navbars">
   <div class="container-fluid-nav text-center">
@@ -12,19 +13,87 @@
 <!-- Question Answeer Box -->
 <div class="QA_container mb-1 p-5">
   <h1 class="mb-3" style="
-      color: green;
+  color: dark rgb(7, 90, 7);;
       text-align: justify;
-      font-size: 1em;
-    ">
-    <i>We certify that to the best of our knowledge, the ideas and the work
-      described in this log have resulted from the work of the team signing
-      off from here.</i>
+      font-size: 1.1em;">
+    We certify that to the best of our knowledge, the ideas and the work
+    described in this log have resulted from the work of the team signing
+    off from here.
   </h1>
-  <br />
-  <br /><br>
-<!-- 1 -->
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button id="generateDesignBtn" class="btn btn-success" type="button">Add inventor <i
+        class="fas fa-plus"></i></button>
+  </div><br>
+  <div id="designContainer">
+  </div>
   <div class="row">
     <!-- First Row -->
+    <div class="col-md-6">
+      <label class="labels">
+        <h1 class="mb-3" style="
+                  font-family: 'Times New Roman', Times, serif;
+                  color: dark rgb(7, 90, 7);;
+                  text-align: center;
+                  font-size: 1.4em;
+                ">
+          <b>Inventor Name</b>
+        </h1>
+      </label>
+      <input type="text" class="form-control" value="{{statement.inventor5}}" name="inventor5" />
+    </div>
+    <div class="col-md-6">
+      <label class="labels">
+        <h1 class="mb-3" style="
+                  font-family: 'Times New Roman', Times, serif;
+                  color: dark green;
+                  text-align: center;
+                  font-size: 1.4em;
+                ">
+          <b>School Name & Grade</b>
+        </h1>
+      </label>
+      <input type="text" class="form-control" value="{{statement.schoolnamegrade5}}" name="schoolnamegrade5" />
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Second Row -->
+    <div class="col-md-6">
+      <!-- Signature Field -->
+      <div class="mb-3">
+        <label class="labels">
+          <h1 class="mb-3" style="
+                  font-family: 'Times New Roman', Times, serif;
+                  color: dark green;
+                  text-align: center;
+                  font-size: 1.4em;
+                ">
+            <b>Signature</b>
+          </h1>
+        </label>
+        <input type="text" class="form-control" value="{{statement.sig5}}" name="sig5" />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <!-- Date Field -->
+      <div class="mb-3">
+        <label class="labels">
+          <h1 class="mb-3" style="
+                  font-family: 'Times New Roman', Times, serif;
+                  color: dark green;
+                  text-align: center;
+                  font-size: 1.4em;
+                ">
+            <b>Date</b>
+          </h1>
+        </label>
+        <input type="date" class="form-control" id="dateField" name="date5" value="{{statement.date5}}">
+      </div>
+    </div>
+  </div><br><br> <br>
+  <br />
+  <!-- Question Answeer Box  Ends-->
+  <!-- <div class="row">
     <div class="col-md-6">
       <form method="post">
         {% csrf_token %}
@@ -58,9 +127,7 @@
   </div>
 
   <div class="row">
-    <!-- Second Row -->
     <div class="col-md-6">
-      <!-- Signature Field -->
       <div class="mb-3">
         <label class="labels">
           <h1 class="mb-3" style="
@@ -76,7 +143,6 @@
       </div>
     </div>
     <div class="col-md-6">
-      <!-- Date Field -->
       <div class="mb-3">
         <label class="labels">
           <h1 class="mb-3" style="
@@ -93,9 +159,7 @@
     </div>
   </div>
  <br><br> <br>
- <!-- 2 -->
   <div class="row">
-    <!-- First Row -->
     <div class="col-md-6">
       <label class="labels">
         <h1 class="mb-3" style="
@@ -126,9 +190,7 @@
   </div>
   
   <div class="row">
-    <!-- Second Row -->
     <div class="col-md-6">
-      <!-- Signature Field -->
       <div class="mb-3">
         <label class="labels">
           <h1 class="mb-3" style="
@@ -143,7 +205,6 @@
               <input type="text" class="form-control" value="{{inventors.1.sig}}"  name="sig2" /> </div>
     </div>
     <div class="col-md-6">
-      <!-- Date Field -->
       <div class="mb-3">
         <label class="labels">
           <h1 class="mb-3" style="
@@ -160,9 +221,8 @@
     </div>
   </div>
   <br><br><br>
-  <!-- 3 -->
+  3
   <div class="row">
-    <!-- First Row -->
     <div class="col-md-6">
       <label class="labels">
         <h1 class="mb-3" style="
@@ -193,9 +253,7 @@
   </div>
   
   <div class="row">
-    <!-- Second Row -->
     <div class="col-md-6">
-      <!-- Signature Field -->
       <div class="mb-3">
         <label class="labels">
           <h1 class="mb-3" style="
@@ -210,7 +268,6 @@
           <input type="text" class="form-control"  value="{{inventors.2.sig}}" name="sig3" />      </div>
     </div>
     <div class="col-md-6">
-      <!-- Date Field -->
       <div class="mb-3">
         <label class="labels">
           <h1 class="mb-3" style="
@@ -227,9 +284,7 @@
     </div>
   </div>
   <br><br><br>
-  <!-- 4 -->
   <div class="row">
-    <!-- First Row -->
     <div class="col-md-6">
       <label class="labels">
         <h1 class="mb-3" style="
@@ -262,11 +317,8 @@
             name="schoolnamegrade4" />
     </div>
   </div>
-  
   <div class="row">
-    <!-- Second Row -->
     <div class="col-md-6">
-      <!-- Signature Field -->
       <div class="mb-3">
         <label class="labels">
           <h1 class="mb-3" style="
@@ -281,7 +333,6 @@
           <input type="text" class="form-control" value="{{inventors.3.sig}}" name="sig4" />      </div>
     </div>
     <div class="col-md-6">
-      <!-- Date Field -->
       <div class="mb-3">
         <label class="labels">
           <h1 class="mb-3" style="
@@ -298,9 +349,7 @@
     </div>
   </div>
   <br><br><br>
-  <!-- 5 -->
   <div class="row">
-    <!-- First Row -->
     <div class="col-md-6">
       <label class="labels">
         <h1 class="mb-3" style="
@@ -331,9 +380,7 @@
   </div>
   
   <div class="row">
-    <!-- Second Row -->
     <div class="col-md-6">
-      <!-- Signature Field -->
       <div class="mb-3">
         <label class="labels">
           <h1 class="mb-3" style="
@@ -348,7 +395,6 @@
           <input type="text" class="form-control"  value="{{inventors.4.sig}}" name="sig5" />      </div>
     </div>
     <div class="col-md-6">
-      <!-- Date Field -->
       <div class="mb-3">
         <label class="labels">
           <h1 class="mb-3" style="
@@ -364,8 +410,7 @@
       </div>
     </div>
   </div>
-</div>
-    <!-- Question Answeer Box  Ends-->
+</div> 
     <!-- Buttons-->
     <div class="container">
       <div class="row">
@@ -378,4 +423,87 @@
         {% include 'website/chat.html' %}
 </div>
 <!-- Buttons ends-->
+<script>
+  function createDesign() {
+    const designContainer = document.getElementById('designContainer');
+    const designCount = designContainer.childElementCount;
+    if (designCount < 4) {
+      const newDesign = document.createElement('div');
+      newDesign.classList.add('row');
+      newDesign.innerHTML = `
+                  <div class="row">
+    <!-- First Row -->
+    <div class="col-md-6">
+      <label class="labels">
+        <h1 class="mb-3" style="
+                font-family: 'Times New Roman', Times, serif;
+                color: dark green;
+                text-align: center;
+                font-size: 1.4em;
+              ">
+          <b>Inventor Name</b>
+        </h1>
+      </label>
+          <input type="text" class="form-control" value="{{statement.inventor5}}"  name="inventor5" />
+    </div>
+    <div class="col-md-6">
+      <label class="labels">
+        <h1 class="mb-3" style="
+                font-family: 'Times New Roman', Times, serif;
+                color: dark green;
+                text-align: center;
+                font-size: 1.4em;
+              ">
+          <b>School Name & Grade</b>
+        </h1>
+      </label>
+          <input type="text" class="form-control" value="{{statement.schoolnamegrade5}}"
+            name="schoolnamegrade5" />
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Second Row -->
+    <div class="col-md-6">
+      <!-- Signature Field -->
+      <div class="mb-3">
+        <label class="labels">
+          <h1 class="mb-3" style="
+                font-family: 'Times New Roman', Times, serif;
+                color: dark green;
+                text-align: center;
+                font-size: 1.4em;
+              ">
+            <b>Signature</b>
+          </h1>
+        </label>
+          <input type="text" class="form-control"  value="{{statement.sig5}}" name="sig5" />      </div>
+    </div>
+    <div class="col-md-6">
+      <!-- Date Field -->
+      <div class="mb-3">
+        <label class="labels">
+          <h1 class="mb-3" style="
+                font-family: 'Times New Roman', Times, serif;
+                color: dark green;
+                text-align: center;
+                font-size: 1.4em;
+              ">
+            <b>Date</b>
+          </h1>
+        </label>
+        <input type="date" class="form-control" id="dateField" name="date5" value="{{statement.date5}}">
+      </div>
+    </div>
+  </div><br><br> <br>
+                `;
+      designContainer.insertBefore(newDesign, designContainer.firstChild);
+      if (designContainer.childElementCount === 4) {
+        document.getElementById('generateDesignBtn').disabled = true;
+      }
+    }
+  }
+  document.getElementById('generateDesignBtn').addEventListener('click', createDesign);
+
+</script>
 {% endblock %}
